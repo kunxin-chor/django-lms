@@ -5,7 +5,7 @@
     <ul>
     {% for c in all_courses %}
         <li>{{c.title}} conducted by {{c.instructor.first_name}} {{c.instructor.last_name}}
-        {%if c.image %}
+        {%if c.image %}a
         <img src="{{c.image.cdn_url}}"/>
         {%endif%}
          <a href="{% url 'update_course' course_id=c.id %}">Edit</a>

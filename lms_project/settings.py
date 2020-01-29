@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pyuploadcare.dj',
+    'crispy_forms',
     'home',
     'catalog'
 ]
@@ -134,3 +135,5 @@ UPLOADCARE = {
     'pub_key': UPLOADCARE_PUBLIC_KEY,
     'secret': UPLOADCARE_SECRET_KEY,
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
