@@ -8,7 +8,7 @@ class Course(models.Model):
     number_of_hours = models.IntegerField(blank=False)
     instructor = models.ForeignKey('Instructor', blank=True, null=True, on_delete=models.SET_NULL)
     
-    image = ImageField(null=True)
+    image = ImageField(null=True, blank=True)
     
     def __str__(self):
         return self.title
