@@ -12,6 +12,9 @@
     {% for c in all_courses %}
         <li>{{c.title}} conducted by {{c.instructor.first_name}} {{c.instructor.last_name}}
          <a href="{% url 'update_course' course_id=c.id %}">Edit</a>
+         {% if c.image %}
+         <img src="{{c.image.cdn_url }}" />
+         {% endif %}
         </li>    
     {% endfor %}
     </ul>
