@@ -57,7 +57,7 @@ ROOT_URLCONF = 'lms_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +123,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # enable static files
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 UPLOADCARE_PUBLIC_KEY = os.environ['UPLOADCARE_PUBLIC_KEY']
 UPLOADCARE_SECRET_KEY = os.environ['UPLOADCARE_SECRET_KEY']
