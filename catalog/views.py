@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 
 from .models import Course
 from .forms import CourseForm
@@ -15,7 +16,8 @@ def create_course(request):
     if request.method == 'POST':
         create_course_form = CourseForm(request.POST)
         if create_course_form.is_valid():
-            create_course_form.save()
+            newly_created_course = create_course_form.save()
+            messages.success(request, "Course " + newly_created_course.title + " has been created!")
             return redirect(reverse(show_courses))
       
     else:
