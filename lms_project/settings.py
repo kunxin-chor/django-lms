@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pyuploadcare.dj',
+    'crispy_forms',
     'home',
     'catalog'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +60,7 @@ ROOT_URLCONF = 'lms_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,7 +125,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 UPLOADCARE = {
     'pub_key' : os.environ['UPLOADCARE_PUBLIC_KEY'],
     'secret' : os.environ['UPLOADCARE_SECRET_KEY']
 }
+
+
+LOGIN_REDIRECT_URL = '/catalog'
