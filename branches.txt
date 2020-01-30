@@ -1,0 +1,7 @@
+  checkpoint_1
+  checkpoint_2
+  checkpoint_3
+  checkpoint_3_added_master_layout
+  checkpoint_4_shopping_cart
+  master
+* sandbox
