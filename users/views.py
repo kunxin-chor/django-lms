@@ -31,5 +31,6 @@ def profile(request):
     # to access the logged in user
     current_user = request.user
     return render(request, 'users/profile.template.html', {
-        'current_user':current_user
+        'current_user':current_user,
+        
     })

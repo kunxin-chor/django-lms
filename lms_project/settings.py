@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'home',
     'catalog',
-    'users'
+    'users',
+    'cart'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -137,3 +138,5 @@ UPLOADCARE = {
 
 
 LOGIN_REDIRECT_URL = '/catalog'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
