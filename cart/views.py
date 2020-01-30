@@ -33,3 +33,15 @@ def view_cart(request):
     return render(request, 'cart/view_cart.template.html',{
         'cart':cart
     })
+    
+def remove_from_cart(request, course_id):
+    cart = request.session.get('shopping_cart', {})
+    
+    if course_id in cart:
+        del cart[course_id]
+        request.session['shopping_cart'] = cart
+        messages.success(request, 'Course has been removed')
+
+    return redirect(view_cart)
+        
+    

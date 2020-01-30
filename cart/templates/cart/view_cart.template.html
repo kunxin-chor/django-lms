@@ -5,7 +5,11 @@
 
 <ul>
 {% for id, course in cart.items %}
-    <li>{{course.title}} - ${{course.cost}}</li>
+    <li>
+        {{course.title}} - ${{course.cost}} | 
+        <a href="{% url 'remove_from_cart' course_id=course.id %}">Remove from Cart</a>
+    
+    </li>
 
 {% endfor %}
 </ul>
