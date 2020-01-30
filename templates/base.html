@@ -12,6 +12,9 @@
   </head>
   <body>
     <div class='container-fluid'>
+      <div class='header'>
+        <a href="{% url 'view_cart' %}">Shopping Cart ({{number_of_items}})</a>
+      </div>
         {% if messages %}
       <div class='alert alert-success'>
        
