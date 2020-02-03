@@ -6,6 +6,10 @@ import stripe
 
 from catalog.models import Course
 
+from django.views.decorators.csrf import csrf_exempt
+
+endpoint_secret = "whsec_6VaMJhni7Zo52VBOcZRkmqwGXDMqQ09l"
+
 # Create your views here.
 def checkout(request):
     # print(settings.STRIPE_SECRET_KEY)
@@ -49,3 +53,32 @@ def checkout_success(request):
     
 def checkout_cancelled(request):
     return HttpResponse("Checkout cancelled")
+    
+@csrf_exempt
+def payment_completed(request):
+  payload = request.body
+  sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+  event = None
+
+  try:
+    event = stripe.Webhook.construct_event(
+      payload, sig_header, endpoint_secret
+    )
+  except ValueError as e:
+    # Invalid payload
+    return HttpResponse(status=400)
+  except stripe.error.SignatureVerificationError as e:
+    # Invalid signature
+    return HttpResponse(status=400)
+
+  # Handle the checkout.session.completed event
+  if event['type'] == 'checkout.session.completed':
+    session = event['data']['object']
+
+    # Fulfill the purchase...
+    handle_checkout_session(session)
+
+  return HttpResponse(status=200)
+  
+def handle_checkout_session(session):
+     print(session)
