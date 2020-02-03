@@ -6,7 +6,6 @@ import stripe
 
 from catalog.models import Course
 
-
 # Create your views here.
 def checkout(request):
     # print(settings.STRIPE_SECRET_KEY)
