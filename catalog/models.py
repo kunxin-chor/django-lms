@@ -9,6 +9,7 @@ class Course(models.Model):
     instructor = models.ForeignKey('Instructor', blank=True, null=True, on_delete=models.SET_NULL)
     
     image = ImageField(null=True, blank=True)
+    cost = models.FloatField(blank=False)
     
     def __str__(self):
         return self.title
