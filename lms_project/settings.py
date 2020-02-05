@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'home',
     'catalog',
     'users',
-    'cart'
+    'cart',
+    'checkout'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents'
             ],
         },
     },
@@ -140,3 +142,6 @@ UPLOADCARE = {
 LOGIN_REDIRECT_URL = '/catalog'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')

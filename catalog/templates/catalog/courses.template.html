@@ -3,6 +3,7 @@
 
 {%block content %}
     <h1>Courses</h1>
+   
     <ul>
     {% for c in all_courses %}
         <li>{{c.title}} conducted by {{c.instructor.first_name}} {{c.instructor.last_name}}
