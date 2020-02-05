@@ -18,13 +18,13 @@ def add_to_cart(request, course_id):
         cart[course_id] = {
             'title': course.title,
             'id':course.id,
-            'cost':99
+            'cost':course.cost
         }
         # save the cart back to the session under the key 'shopping_cart'
         request.session['shopping_cart'] = cart
         messages.success(request, "You have added a new course")
     else:
-        messages.success("The course is already in your shopping cart")
+        messages.success(request, "The course is already in your shopping cart")
     return redirect('/catalog/')
  
     

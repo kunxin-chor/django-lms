@@ -2,14 +2,34 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 
 from .models import Course
-from .forms import CourseForm
+from .forms import CourseForm, CourseSearchForm
 
 # Create your views here.
 def show_courses(request):
     
+    search_form = CourseSearchForm(request.GET)
+    
+    #assume no search terms,we want to show all
     all_courses = Course.objects.all()
+    
+    
+    if search_form.data.get('search_terms'):
+        """
+        SELECT * FROM courses WHERE title LIKE '%react%'
+        """
+        all_courses = all_courses.filter(title__contains=search_form.data['search_terms'])
+        
+    if request.GET.get('min_cost'):
+        all_courses = all_courses.filter(cost__gte=request.GET.get('min_cost'))
+        
+    
+    if request.GET.get('max_cost'):
+        all_courses = all_courses.filter(cost__lte=request.GET.get('max_cost'))
+    
+    
     return render(request, 'catalog/courses.template.html', {
-        'all_courses':all_courses
+        'all_courses':all_courses,
+        'search_form':search_form
     })
     
     

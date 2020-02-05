@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
+{% block subtitle %}
+Course Catalog    
+{% endblock %}
 
 {%block content %}
     <h1>Courses</h1>
+
+    <form method='GET'>
+        {{search_form|crispy}}
+        <input type='submit' value='Search' class='btn btn-primary'/>
+    </form>
    
-    <ul>
+    <article>
     {% for c in all_courses %}
-        <li>{{c.title}} conducted by {{c.instructor.first_name}} {{c.instructor.last_name}}
+        <section>{{c.title}} conducted by {{c.instructor.first_name}} {{c.instructor.last_name}} for ${{c.cost}}
          <a href="{% url 'update_course' course_id=c.id %}">Edit</a> | 
          <a href="{%  url 'add_to_cart' course_id=c.id %}">Add to Cart</a>
          {% if c.image %}
-         <img src="{{c.image.cdn_url }}" />
+         <img src="{{c.image.cdn_url }}" alt='Cover image for {{c.title}}' />
          {% endif %}
-        </li>    
+        </section>    
     {% endfor %}
-    </ul>
+    </article>
 {% endblock %}
