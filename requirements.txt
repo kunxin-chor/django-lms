@@ -15,7 +15,7 @@ Click==7.0
 colorama==0.4.1
 cookiecutter==1.6.0
 dateparser==0.7.2
-Django==2.2.6
+Django==2.2.21
 django-crispy-forms==1.8.1
 docker==4.1.0
 docutils==0.15.2
